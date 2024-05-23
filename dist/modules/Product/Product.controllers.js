@@ -33,12 +33,24 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield Product_service_1.ProductService.getAllProductFromDB();
-        res.json({
-            success: true,
-            message: "All Product get successfully!",
-            data: result,
-        });
+        const phoneName = req.query.searchTerm;
+        const phone = `${phoneName}`;
+        if (phoneName) {
+            const result = yield Product_service_1.ProductService.getProductByQFromDB(phone);
+            res.json({
+                success: true,
+                message: "All Product get successfully!",
+                data: result,
+            });
+        }
+        else {
+            const result = yield Product_service_1.ProductService.getAllProductFromDB();
+            res.json({
+                success: true,
+                message: "All Product get successfully!",
+                data: result,
+            });
+        }
     }
     catch (err) {
         res.json({

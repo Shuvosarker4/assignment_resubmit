@@ -23,6 +23,10 @@ const getSingleDataFromDB = (id) => __awaiter(void 0, void 0, void 0, function* 
     const result = yield Product_model_1.ProductModel.findOne({ _id: id });
     return result;
 });
+const getProductByQ = (phoneName) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Product_model_1.ProductModel.findOne({ name: phoneName });
+    return result;
+});
 exports.ProductService = {
     createProductInDB,
     getAllProductFromDB,

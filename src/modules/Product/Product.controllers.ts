@@ -23,15 +23,26 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getAllProduct = async (req: Request, res: Response) => {
   try {
-    const result = await ProductService.getAllProductFromDB();
-    res.json({
-      success: true,
-      message: "All Product get successfully!",
-      data: result,
-    });
+    const phoneName = req.query.searchTerm;
+    const phone = `${phoneName}`;
+    if (phoneName) {
+      const result = await ProductService.getProductByQFromDB(phone);
+      res.json({
+        success: true,
+        message: "Product get successfully!",
+        data: result,
+      });
+    } else {
+      const result = await ProductService.getAllProductFromDB();
+      res.json({
+        success: true,
+        message: "All Product get successfully!",
+        data: result,
+      });
+    }
   } catch (err: any) {
     res.json({
-      success: true,
+      success: false,
       message: "Failed to fetch data!",
       data: err,
     });

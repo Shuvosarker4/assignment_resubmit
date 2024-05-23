@@ -16,8 +16,14 @@ const getSingleDataFromDB = async (id: string) => {
   return result;
 };
 
+const getProductByQFromDB = async (phoneName: string) => {
+  const result = await ProductModel.find({ name: phoneName });
+  return result;
+};
+
 export const ProductService = {
   createProductInDB,
   getAllProductFromDB,
   getSingleDataFromDB,
+  getProductByQFromDB,
 };
