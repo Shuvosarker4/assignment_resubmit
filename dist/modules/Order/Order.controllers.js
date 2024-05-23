@@ -35,17 +35,41 @@ const orderCreate = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 const getAllOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield Order_service_1.OrderService.getAllOrder();
-        res.json({
-            success: true,
-            message: "Product created successfully!",
-            data: result,
-        });
+        const getEmail = req.query.email;
+        const mail = `${getEmail}`;
+        if (getEmail) {
+            const result = yield Order_service_1.OrderService.getOrderByQ(mail);
+            const data = result[0].email;
+            // console.log(data);
+            // console.log(mail);
+            if (data == mail) {
+                res.json({
+                    success: true,
+                    message: "Order created successfully!",
+                    data: result,
+                });
+            }
+            else {
+                res.json({
+                    success: false,
+                    message: "Order not found",
+                    data: null,
+                });
+            }
+        }
+        else {
+            const result = yield Order_service_1.OrderService.getAllOrder();
+            res.json({
+                success: true,
+                message: "Order created successfully!",
+                data: result,
+            });
+        }
     }
     catch (err) {
         res.status(500).json({
             success: false,
-            message: "Could not fetch orders!",
+            message: "Wrong Info!",
             error: err,
         });
     }

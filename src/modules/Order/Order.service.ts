@@ -11,7 +11,13 @@ const getAllOrder = async () => {
   return result;
 };
 
+const getOrderByQ = async (mail: string) => {
+  const result = await Order.find({ email: mail });
+  return result;
+};
+
 export const OrderService = {
   orderCreate,
   getAllOrder,
+  getOrderByQ,
 };

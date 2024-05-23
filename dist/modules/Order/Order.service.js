@@ -19,7 +19,12 @@ const getAllOrder = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield Order_model_1.Order.find();
     return result;
 });
+const getOrderByQ = (mail) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Order_model_1.Order.find({ email: mail });
+    return result;
+});
 exports.OrderService = {
     orderCreate,
     getAllOrder,
+    getOrderByQ,
 };
