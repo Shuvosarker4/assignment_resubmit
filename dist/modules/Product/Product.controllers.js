@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductController = void 0;
 const Product_service_1 = require("./Product.service");
 const Product_validation_1 = require("./Product.validation");
+//create data
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
@@ -31,6 +32,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
+//get all and query data
 const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const phoneName = req.query.searchTerm;
@@ -60,6 +62,7 @@ const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
+//get single data
 const getSingleData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -78,6 +81,7 @@ const getSingleData = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
+//delete data from DB
 const deleteData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -85,7 +89,7 @@ const deleteData = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.json({
             success: true,
             message: "Product deleted successfully!",
-            data: result,
+            data: null,
         });
     }
     catch (err) {
@@ -96,9 +100,21 @@ const deleteData = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
 });
+//update a data
+const updateData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const data = req.body;
+    const result = yield Product_service_1.ProductService.updateDataToDB(id, data);
+    res.json({
+        success: true,
+        message: "Product updated successfully!",
+        data: result,
+    });
+});
 exports.ProductController = {
     createProduct,
     getAllProduct,
     getSingleData,
     deleteData,
+    updateData,
 };

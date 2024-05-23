@@ -88,9 +88,23 @@ const deleteData = async (req: Request, res: Response) => {
   }
 };
 
+//update a data
+
+const updateData = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const data = req.body;
+  const result = await ProductService.updateDataToDB(id, data);
+  res.json({
+    success: true,
+    message: "Product updated successfully!",
+    data: result,
+  });
+};
+
 export const ProductController = {
   createProduct,
   getAllProduct,
   getSingleData,
   deleteData,
+  updateData,
 };

@@ -26,10 +26,19 @@ const deleteDataFromDB = async (id: string) => {
   return result;
 };
 
+const updateDataToDB = async (id: string, data: TProduct) => {
+  const result = await ProductModel.updateOne({ _id: id }, data);
+  if (result.modifiedCount) {
+    const result = await ProductModel.findOne({ _id: id });
+    return result;
+  }
+};
+
 export const ProductService = {
   createProductInDB,
   getAllProductFromDB,
   getSingleDataFromDB,
   getProductByQFromDB,
   deleteDataFromDB,
+  updateDataToDB,
 };

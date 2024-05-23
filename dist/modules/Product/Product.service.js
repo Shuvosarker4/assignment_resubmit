@@ -31,10 +31,18 @@ const deleteDataFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () 
     const result = yield Product_model_1.ProductModel.findByIdAndDelete(id);
     return result;
 });
+const updateDataToDB = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Product_model_1.ProductModel.updateOne({ _id: id }, data);
+    if (result.modifiedCount) {
+        const result = yield Product_model_1.ProductModel.findOne({ _id: id });
+        return result;
+    }
+});
 exports.ProductService = {
     createProductInDB,
     getAllProductFromDB,
     getSingleDataFromDB,
     getProductByQFromDB,
     deleteDataFromDB,
+    updateDataToDB,
 };
