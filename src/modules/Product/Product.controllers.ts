@@ -41,8 +41,6 @@ const getAllProduct = async (req: Request, res: Response) => {
 const getSingleData = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log(id);
-    // const data = `${id}`
     const result = await ProductService.getSingleDataFromDB(id);
     res.json({
       success: true,
