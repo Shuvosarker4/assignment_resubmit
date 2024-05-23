@@ -8,19 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const Product_routes_1 = require("./modules/Product/Product.routes");
-const app = (0, express_1.default)();
-//parser
-app.use(express_1.default.json());
-//application routes
-app.use("/api/products", Product_routes_1.ProductRoutes);
-app.use("/api/orders", Product_routes_1.ProductRoutes);
-app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("Hello World!");
-}));
-exports.default = app;
+exports.OrderService = void 0;
+const Order_model_1 = require("./Order.model");
+const orderCreate = (playLoad) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Order_model_1.Order.create(playLoad);
+    return result;
+});
+const getAllOrder = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Order_model_1.Order.find();
+    return result;
+});
+exports.OrderService = {
+    orderCreate,
+    getAllOrder,
+};

@@ -51,8 +51,6 @@ const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const getSingleData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        console.log(id);
-        // const data = `${id}`
         const result = yield Product_service_1.ProductService.getSingleDataFromDB(id);
         res.json({
             success: true,

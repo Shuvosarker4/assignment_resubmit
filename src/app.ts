@@ -6,6 +6,7 @@ const app = express();
 app.use(express.json());
 //application routes
 app.use("/api/products", ProductRoutes);
+app.use("/api/orders", ProductRoutes);
 
 app.get("/", async (req: Request, res: Response) => {
   res.send("Hello World!");
