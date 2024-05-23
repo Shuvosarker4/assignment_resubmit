@@ -21,9 +21,15 @@ const getProductByQFromDB = async (phoneName: string) => {
   return result;
 };
 
+const deleteDataFromDB = async (id: string) => {
+  const result = await ProductModel.findByIdAndDelete(id);
+  return result;
+};
+
 export const ProductService = {
   createProductInDB,
   getAllProductFromDB,
   getSingleDataFromDB,
   getProductByQFromDB,
+  deleteDataFromDB,
 };

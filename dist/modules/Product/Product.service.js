@@ -23,12 +23,18 @@ const getSingleDataFromDB = (id) => __awaiter(void 0, void 0, void 0, function* 
     const result = yield Product_model_1.ProductModel.findOne({ _id: id });
     return result;
 });
-const getProductByQ = (phoneName) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield Product_model_1.ProductModel.findOne({ name: phoneName });
+const getProductByQFromDB = (phoneName) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Product_model_1.ProductModel.find({ name: phoneName });
+    return result;
+});
+const deleteDataFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield Product_model_1.ProductModel.findByIdAndDelete(id);
     return result;
 });
 exports.ProductService = {
     createProductInDB,
     getAllProductFromDB,
     getSingleDataFromDB,
+    getProductByQFromDB,
+    deleteDataFromDB,
 };

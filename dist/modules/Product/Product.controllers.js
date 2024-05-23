@@ -39,7 +39,7 @@ const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             const result = yield Product_service_1.ProductService.getProductByQFromDB(phone);
             res.json({
                 success: true,
-                message: "All Product get successfully!",
+                message: "Product get successfully!",
                 data: result,
             });
         }
@@ -54,7 +54,7 @@ const getAllProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (err) {
         res.json({
-            success: true,
+            success: false,
             message: "Failed to fetch data!",
             data: err,
         });
@@ -78,8 +78,27 @@ const getSingleData = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
+const deleteData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield Product_service_1.ProductService.deleteDataFromDB(id);
+        res.json({
+            success: true,
+            message: "Product deleted successfully!",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.json({
+            success: true,
+            message: "Failed to fetch data!",
+            data: err,
+        });
+    }
+});
 exports.ProductController = {
     createProduct,
     getAllProduct,
     getSingleData,
+    deleteData,
 };

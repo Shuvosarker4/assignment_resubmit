@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ProductService } from "./Product.service";
 import { ProductSchemaValidation } from "./Product.validation";
 
+//create data
 const createProduct = async (req: Request, res: Response) => {
   try {
     const data = req.body;
@@ -21,6 +22,7 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
+//get all and query data
 const getAllProduct = async (req: Request, res: Response) => {
   try {
     const phoneName = req.query.searchTerm;
@@ -48,7 +50,7 @@ const getAllProduct = async (req: Request, res: Response) => {
     });
   }
 };
-
+//get single data
 const getSingleData = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -67,8 +69,28 @@ const getSingleData = async (req: Request, res: Response) => {
   }
 };
 
+//delete data from DB
+const deleteData = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const result = await ProductService.deleteDataFromDB(id);
+    res.json({
+      success: true,
+      message: "Product deleted successfully!",
+      data: null,
+    });
+  } catch (err: any) {
+    res.json({
+      success: true,
+      message: "Failed to fetch data!",
+      data: err,
+    });
+  }
+};
+
 export const ProductController = {
   createProduct,
   getAllProduct,
   getSingleData,
+  deleteData,
 };
