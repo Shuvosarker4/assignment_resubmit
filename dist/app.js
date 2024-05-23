@@ -21,6 +21,13 @@ app.use(express_1.default.json());
 //application routes
 app.use("/api/products", Product_routes_1.ProductRoutes);
 app.use("/api/orders", Order_routes_1.OrderRoutes);
+//Route error
+app.all("*", (req, res) => {
+    res.json({
+        success: false,
+        message: "Route not found",
+    });
+});
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send("Hello World!");
 }));
