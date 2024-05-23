@@ -8,18 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderController = void 0;
 const Order_service_1 = require("./Order.service");
-const Order_validation_1 = __importDefault(require("./Order.validation"));
+// import orderSchema from "./Order.validation";
 const orderCreate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const OrderData = req.body;
-        const zodParsedData = Order_validation_1.default.parse(OrderData);
-        const result = yield Order_service_1.OrderService.orderCreate(zodParsedData);
+        // const zodParsedData = orderSchema.parse(OrderData);
+        const result = yield Order_service_1.OrderService.orderCreate(OrderData);
         res.json({
             success: true,
             message: "Order created successfully!",

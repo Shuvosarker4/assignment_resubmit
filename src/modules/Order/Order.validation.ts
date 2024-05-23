@@ -1,11 +1,8 @@
 import { z } from "zod";
 
 export const orderSchema = z.object({
-  email: z
-    .string()
-    .email({ message: "Invalid email format." })
-    .nonempty({ message: "Email is required." }),
-  productId: z.string().nonempty({ message: "Product ID is required." }),
+  email: z.string().email({ message: "Invalid email format." }),
+  productId: z.string(),
   price: z.number().positive({ message: "Price must be a positive number." }),
   quantity: z
     .number()
